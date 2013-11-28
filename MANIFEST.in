@@ -1,0 +1,2 @@
+recursive-include news_sitemaps/templates *.xml
+include LICENSE
