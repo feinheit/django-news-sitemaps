@@ -2,6 +2,10 @@ import datetime
 from django.contrib.sitemaps import Sitemap
 
 class NewsSitemap(Sitemap):
+    def __init__(self, language_code=None):
+        self.language_code = language_code
+
+
     def genres(self, obj):
         """
         Returns a comma-separated list of properties characterizing the content of the article,

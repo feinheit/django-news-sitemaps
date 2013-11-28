@@ -55,6 +55,6 @@ def news_sitemap(request, sitemaps, section=None):
     return render_to_response('sitemaps/news_sitemap.xml', {
         'urlset': urls,
         'publication_name': NAME,
-        'publication_lang': LANG,
+        'publication_lang': getattr(site, 'language_code', LANG),
         'publication_tz': TZ
     }, mimetype='application/xml')

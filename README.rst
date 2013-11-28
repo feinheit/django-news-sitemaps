@@ -73,3 +73,19 @@ the actual sitemap at /news-sitemaps/comments.xml.
 Notice the ``genres`` method. There are a few new methods in addition to the normal Sitemap methods which are news specific.
 They are: ``title``, ``access``, ``keywords``, ``stock_tickers``, and ``genres``.
 Please refer to `Google's News Sitemaps <http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=74288>`_ specification for more info on how to use them correctly.
+
+
+Multi-language Sitemaps
+-----------------------
+
+Use ``translation.override`` in your ``Sitemap`` methods::
+
+    def title(self, obj):
+        with translation.override(self.language_code):
+            return obj.title
+
+Create a Sitemap for each language::
+
+    for language in settings.LANGUAGES:
+        register(**{'news_%s' % language[0]: MyNewsSitemap(language[0])})
+
