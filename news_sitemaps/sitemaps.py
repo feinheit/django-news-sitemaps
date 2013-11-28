@@ -52,6 +52,17 @@ class NewsSitemap(Sitemap):
             * Subscription (visible): an article which prompts users to pay to view content.
             * Registration (visible): an article which prompts users to sign up for an unpaid account to view content.
         """
+
+    def geo_locations(self, obj):
+        """
+        Returns the geographic location of the article. Not required but recommended.
+        You should list locations from smallest entity to largest. For example:
+
+            * City, State, Country
+            * Province, Country
+
+        Additional infos here: https://support.google.com/news/publisher/answer/1662970?hl=en
+        """
     
     def stock_tickers(self, obj):
         """
@@ -84,5 +95,6 @@ class NewsSitemap(Sitemap):
                 'access':       get('access', item, None),
                 'keywords':     get('keywords', item, None),
                 'genres':       get('genres', item, None),
+                'geo_locations':get('geo_locations', item, None),
                 'stock_tickers':get('stock_tickers', item, None),
             }
