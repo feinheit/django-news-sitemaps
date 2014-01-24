@@ -11,7 +11,7 @@
 					<news:language>{{ publication_lang }}</news:language>
 				</news:publication>
 				<news:title>{{ url.title }}</news:title>
-				{% if url.lastmod %}<news:publication_date>{{ url.lastmod.isoformat }}{{ publication_tz }}</news:publication_date>{% endif %}
+				{% if url.lastmod %}<news:publication_date>{{ url.lastmod.isoformat }}</news:publication_date>{% endif %}
 				{% if url.access %}<news:access>{{ url.access|lower }}</news:access> {% endif %}
 				{% if url.genres %}<news:genres>{{ url.genres }}</news:genres>{% endif %}
 				{% if url.keywords %}<news:keywords>{{ url.keywords|escape }}</news:keywords>{% endif %}

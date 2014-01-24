@@ -75,7 +75,7 @@ They are: ``title``, ``access``, ``keywords``, ``stock_tickers``, and ``genres``
 Please refer to `Google's News Sitemaps <http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=74288>`_ specification for more info on how to use them correctly.
 
 
-.. note::  
+.. note::
 
   Make sure you add the ``lastmod`` method or Google will not accept the sitemap.
 
@@ -86,9 +86,21 @@ Multi-language Sitemaps
 
 Use ``translation.override`` in your ``Sitemap`` methods::
 
+    def items(self):
+        two_days_old = timezone.now() - timedelta(days=2)
+        return Entry.objects.filter(date__gte=two_days_old).exclude(
+                            **{'slug_%s__isnull' % self.language_code: True})
+
     def title(self, obj):
         with translation.override(self.language_code):
             return obj.title
+
+    def location(self, obj):
+        with translation.override(self.language_code):
+            return obj.get_absolute_url()
+
+    def lastmod(self, obj):
+        return obj.updated
 
 
 Create a Sitemap for each language::
